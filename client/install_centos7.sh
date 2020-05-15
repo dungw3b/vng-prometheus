@@ -74,6 +74,8 @@ if [ ! -e /usr/bin/wget ]; then
     yum -y install wget
 fi
 
+mkdir /etc/prometheus
+
 # Install node-exporter
 echo "Installing node-exporter..."
 
