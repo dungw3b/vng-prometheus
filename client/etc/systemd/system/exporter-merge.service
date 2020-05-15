@@ -1,0 +1,15 @@
+[Unit]
+Description=Exporter Merge
+Requires=network.target
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/exporter-merger --config-path=/etc/prometheus/exporter-merge.yaml --listen-port 11011
+TimeoutStopSec=60
+Restart=on-failure
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=exporter-merge
+User=nobody
+[Install]
+WantedBy=default.target

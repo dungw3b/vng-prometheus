@@ -1,0 +1,15 @@
+[Unit]
+Description=Node Exporter
+Requires=network.target
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/node-exporter --log.level=error --web.listen-address=localhost:11020
+TimeoutStopSec=60
+Restart=on-failure
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=node-exporter
+User=nobody
+[Install]
+WantedBy=default.target

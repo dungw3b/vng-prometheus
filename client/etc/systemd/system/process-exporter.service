@@ -1,0 +1,15 @@
+[Unit]
+Description=Process Exporter
+Requires=network.target
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/process-exporter -web.listen-address=localhost:11040 -config.path=/etc/prometheus/process-exporter.yaml
+TimeoutStopSec=60
+Restart=on-failure
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=process-exporter
+User=nobody
+[Install]
+WantedBy=default.target
