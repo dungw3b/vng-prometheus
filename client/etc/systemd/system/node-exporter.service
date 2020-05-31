@@ -3,7 +3,7 @@ Description=Node Exporter
 Requires=network.target
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/node-exporter --log.level=error --web.listen-address=localhost:11020
+ExecStart=/usr/local/bin/node-exporter --collector.processes --collector.tcpstat --log.level=error --web.listen-address=localhost:11020
 TimeoutStopSec=60
 Restart=on-failure
 RestartSec=10
