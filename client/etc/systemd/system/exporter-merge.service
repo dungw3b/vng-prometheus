@@ -4,6 +4,7 @@ Requires=network.target
 [Service]
 Type=simple
 ExecStart=/usr/local/bin/exporter-merger --config-path=/etc/prometheus/exporter-merge.yaml --listen-port 11011
+ExecReload=/bin/kill -HUP $MAINPID
 TimeoutStopSec=60
 Restart=on-failure
 RestartSec=10
