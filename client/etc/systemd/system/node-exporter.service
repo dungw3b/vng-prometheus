@@ -4,6 +4,7 @@ Requires=network.target
 [Service]
 Type=simple
 ExecStart=/usr/local/bin/node-exporter --collector.processes --collector.tcpstat --log.level=error --web.listen-address=localhost:11020
+ExecReload=/bin/kill -HUP $MAINPID
 TimeoutStopSec=60
 Restart=on-failure
 RestartSec=10
