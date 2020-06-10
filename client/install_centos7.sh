@@ -2,7 +2,7 @@
 # @dungvv
 
 VER_EXPORTER_MERGE=0.3.0
-VER_NODE_EXPORTER=0.18.1
+VER_NODE_EXPORTER=1.0.0
 VER_PROC_EXPORTER=0.6.0
 
 OS=`uname`;
@@ -34,6 +34,7 @@ install_process()
     fi
 
     cd /root && tar -xzf process-exporter-${VER_PROC_EXPORTER}.linux-amd64.tar.gz
+    systemctl stop process-exporter.service
     mv /root/process-exporter-${VER_PROC_EXPORTER}.linux-amd64/process-exporter /usr/local/bin/process-exporter
     chmod 755 /usr/local/bin/process-exporter
     cd $CDIR
@@ -86,6 +87,7 @@ if [ $? -ne 0 ]; then
 fi
 
 cd /root && tar -xzf node_exporter-${VER_NODE_EXPORTER}.linux-amd64.tar.gz
+systemctl stop node-exporter.service
 mv /root/node_exporter-${VER_NODE_EXPORTER}.linux-amd64/node_exporter /usr/local/bin/node-exporter
 chmod 755 /usr/local/bin/node-exporter
 cd $CDIR
@@ -103,6 +105,7 @@ fi
 
 # Install exporter-merge
 echo "Installing exporter-merge..."
+systemctl stop exporter-merge.service
 
 /usr/bin/wget --no-check-certificate -O /usr/local/bin/exporter-merger  https://github.com/rebuy-de/exporter-merger/releases/download/v${VER_EXPORTER_MERGE}/exporter-merger-v${VER_EXPORTER_MERGE}.dirty-linux-amd64
 if [ $? -ne 0 ]; then
