@@ -6,7 +6,7 @@ RETVAL=0
 PROG="node-exporter"
 EXEC="/usr/local/bin/node-exporter"
 LOCKFILE="/var/lock/subsys/$PROG"
-OPTIONS="--collector.processes --collector.tcpstat --log.level=error --web.listen-address=localhost:11020"
+OPTIONS="--collector.processes --collector.tcpstat --log.level=error --collector.filesystem.ignored-fs-types=^(nfs|nfs4)$ --web.listen-address=localhost:11020"
 
 # Source function library.
 if [ -f /etc/rc.d/init.d/functions ]; then
