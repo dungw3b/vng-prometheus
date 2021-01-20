@@ -22,7 +22,7 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-cd tar -xzf node_exporter-${VER_NODE_EXPORTER}.linux-amd64.tar.gz
+tar -xzf node_exporter-${VER_NODE_EXPORTER}.linux-amd64.tar.gz
 systemctl stop node_exporter.service
 mv /root/node_exporter-${VER_NODE_EXPORTER}.linux-amd64/node_exporter /usr/local/bin/node_exporter
 chmod 755 /usr/local/bin/node_exporter
