@@ -1,0 +1,16 @@
+[Unit]
+Description=Node Exporter
+Requires=network.target
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/node_exporter --collector.processes --collector.tcpstat --log.level=error --collector.filesystem.ignored-fs-types=^(nfs|nfs4)$ --web.listen-address=localhost:9100
+ExecReload=/bin/kill -HUP $MAINPID
+TimeoutStopSec=60
+Restart=on-failure
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=node_exporter
+User=nobody
+[Install]
+WantedBy=default.target
